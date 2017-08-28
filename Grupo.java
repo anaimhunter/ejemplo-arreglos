@@ -12,17 +12,24 @@ public class Grupo
     
     public void inscribir(Estudiante unEstudiante)
     {
-       if(estudiantes [0]==null)
+       for(int i=0; i<estudiantes.length;i++)
        {
-           estudiantes[0]=unEstudiante; 
-        }
+           if(estudiantes[i] == null)
+           {
+               estudiantes[i] = unEstudiante;
+           } 
+       }
     }
     
     //Terminar este metodo 
     public void darBaja(int claveEstudiante)
     {
-        /*Buscar el estudiante con la clave dada
-         * asignarle null
-         */
+        for(int i=0;i<estudiantes.length;i++)
+        {
+            if(estudiantes[i].clave == claveEstudiante)
+            {
+                estudiantes[i] = estudiantes [i+1];
+            }
+        }
     }
 }
