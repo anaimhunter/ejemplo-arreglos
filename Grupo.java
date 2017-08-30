@@ -1,4 +1,8 @@
-
+/**
+ * La clase grupo representa objetos que contienen estudiantes
+ * @author Ana M.Hunter
+ * @version 1.0
+ */
 public class Grupo
 {
     private String nomMateria;
@@ -35,7 +39,26 @@ public class Grupo
         return -1;
     }
     
-    
+    /**
+     * Busca un estudiante por medio de su nombre
+     * @param nombreEstudiante Parametro que representa el nombre del estudiante a buscar
+     * @return Regresa la posicion del estudiante en el arreglo o -1 si no existe
+     */
+    private int buscarEstudiante(String nombreEstudiante)
+    {
+        for(int i=0;i<estudiantes.length;i++)
+        {
+            if(estudiantes[i]!=null)
+            {
+                if(estudiantes[i].dimeNombreAlumno() == nombreEstudiante)
+                {
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+   
     /**
      * Busca un espacio disponible en el arreglo para guardar al estudiante
      * @return Regresa la posicion nula dentro del arreglo
@@ -95,6 +118,26 @@ public class Grupo
         return true;
     }
     
+    /**
+     * Da de baja a un alumno del grupo
+     * @param nombreEstudiante Parametro que representa el nombre del alumno a eliminar
+     * @return Regresa verdadero si se dio de baja o falso en caso de que
+     *         no se pudiera dar de baja
+     */public boolean darBaja(String nombreEstudiante)
+    {
+        int existe = this.buscarEstudiante(nombreEstudiante);
+        if(existe == -1)
+        {
+            return false; // no esta inscrito
+        }
+        for(int i=existe;i<(estudiantes.length-1);i++)
+           {
+               estudiantes[i] = estudiantes[i+1];
+           }
+        estudiantes[estudiantes.length-1] =null;
+        
+        return true;
+    }
     
     /**
      * Cuenta el numero de estudiantes inscritos en el grupo

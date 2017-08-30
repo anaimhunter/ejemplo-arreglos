@@ -1,4 +1,11 @@
 
+
+
+/**
+ * La clase estudiante representa objetos que son estudiantes
+ * @author Ana M.Hunter
+ * @version 1.0
+ */
 public class Estudiante
 {
     private String nombre;
@@ -24,6 +31,7 @@ public class Estudiante
         return "Clave:" +clave +",Nombre: " +nombre;
     }
     
+    
     /**
      * Da la clave del estudiante
      * @return Regresa la clave del estudiante
@@ -31,5 +39,14 @@ public class Estudiante
     public int dimeClave()
     {
         return clave;
+    }
+    
+    /**
+     * Da el nombre del alumno
+     * @return Regresa el nombre del estudiante
+     */
+    public String dimeNombreAlumno()
+    {
+        return nombre;
     }
 }
