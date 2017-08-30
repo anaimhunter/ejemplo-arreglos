@@ -4,6 +4,11 @@ public class Grupo
     private String nomMateria;
     private Estudiante[]  estudiantes;
     
+    /**
+     * Constructor del Grupo
+     * @param totalEstudiantes Parametro que es el numero total de estudiantes en el grupo
+     * @param nomMateria Parametro que es el nombre de la materia                        
+     */
     public Grupo(int totalEstudiantes, String nomMateria)
     {
        estudiantes = new Estudiante[totalEstudiantes];
@@ -19,9 +24,12 @@ public class Grupo
     {
         for(int i=0;i<estudiantes.length;i++)
         {
-            if(estudiantes[i].dimeClave() == claveEstudiante)
+            if(estudiantes[i]!=null)
             {
-                return i;
+                if(estudiantes[i].dimeClave() == claveEstudiante)
+                {
+                    return i;
+                }
             }
         }
         return -1;
@@ -65,18 +73,40 @@ public class Grupo
         estudiantes[posDisponible] = unEstudiante;//inscribe al estudiante
         return true; //el estudiante fue inscrito
     }
-    
-     //completar el metodo llamando a los metodos auxiliares, realizarlo boolean, documentacion
-    public void darBaja(int claveEstudiante)
+   
+    /**
+     * Da de baja a un alumno del grupo
+     * @param claveEstudiante Parametro que representa la clave del alumno a eliminar
+     * @return Regresa verdadero si se dio de baja o falso en caso de que
+     *         no se pudiera dar de baja
+     */public boolean darBaja(int claveEstudiante)
     {
-        for(int i=0;i<estudiantes.length;i++)
+        int existe = this.buscarEstudiante(claveEstudiante);
+        if(existe == -1)
         {
-            if(estudiantes[i].dimeClave() == claveEstudiante)
-            {
-                estudiantes[i] = estudiantes [i+1];
-            }
+            return false; // no esta inscrito
         }
+        for(int i=existe;i<(estudiantes.length-1);i++)
+           {
+               estudiantes[i] = estudiantes[i+1];
+           }
+        estudiantes[estudiantes.length-1] =null;
+        
+        return true;
     }
     
+    
+    /**
+     * Cuenta el numero de estudiantes inscritos en el grupo
+     * @return Regresa el numero de estudiantes inscritos en el grupo
+     */public int dimeEstudiantesInscritos()
+    {
+        int cuenta=0;
+        if(buscaEspacioDisponible() ==-1)
+        {
+            cuenta++;
+        }
+        return cuenta;
+    }
     
 }
